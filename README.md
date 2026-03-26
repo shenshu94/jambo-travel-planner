@@ -169,3 +169,64 @@ Health:
 - Add centralized request validation and error handling for backend routes
 - Move frontend API URLs into environment-specific configuration
 - Add stylesheet instead of hardcoded color, spacing and font to ensure style consistency
+
+## AI Usage
+
+### Tools
+- Codex
+
+### How I used AI
+
+I used AI tools to assist with development efficiency, mainly for scaffolding, boilerplate generation, and refining documentation. 
+
+My overall workflow was:
+
+1. I first reviewed the requirements and defined the project scope.
+2. I made all key decisions around:
+   - technology stack
+   - system architecture
+   - folder structure
+   - API design
+   - authentication flow
+3. I used AI to help initialize parts of the frontend and backend setup.
+4. I broke the implementation into smaller, well-defined tasks.
+5. For each task, I used AI with structured prompts based on my design to generate initial implementations.
+6. I reviewed and adjusted all AI-generated code to ensure it met my expectations, especially for core logic such as:
+   - API responses
+   - error handling
+   - authentication
+7. I used AI to help refine README, comments, and JSDoc for clarity.
+
+Overall, AI was used as a productivity tool, while all design decisions and final implementations were validated and owned by me.
+
+### Example Prompt
+
+Below is an example of how I used structured prompts to guide AI for a specific feature:
+Work only in the frontend folder.
+
+Goal: Use the backend geolocation endpoint to auto-select the default city on the Planner page.
+
+Tasks:
+1. Create a LocationService
+   - Use HttpClient
+   - Add getCurrentCity() that calls GET /api/location/current-city
+
+2. Update the Planner page component
+   - On init, after confirming a token exists:
+     - load cities first
+     - then call the location endpoint
+   - If response contains a matchedCityId that exists in the city list:
+     - set it as selectedCityId
+     - load travel info for that city
+   - If the request fails or no match is found:
+     - fall back to selecting the first city
+
+Constraints:
+- Do not modify backend
+- Do not change login flow
+- Keep changes minimal
+- Do not refactor unrelated files
+- Show a summary of changed files before finishing
+
+This approach helped ensure changes were incremental, controlled, and aligned with the overall system design.
+I avoided over-reliance on AI for critical logic to ensure I fully understood and could explain all parts of the system during technical discussions.
